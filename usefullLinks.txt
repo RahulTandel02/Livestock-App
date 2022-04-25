@@ -1,0 +1,29 @@
+https://stackoverflow.com/questions/57051203/serve-files-from-well-known-folder-in-a-react-app
+
+https://developer.android.com/training/app-links/verify-site-associations
+
+https://docs.expo.dev/guides/linking/#handling-urls-in-your-app
+
+https://docs.expo.dev/guides/linking/?redirected
+
+https://reactnavigation.org/docs/deep-linking/
+
+https://reactnavigation.org/docs/4.x/deep-linking/
+
+https://medium.com/@muratcanbur/intro-to-deep-linking-on-android-1b9fe9e38abd
+
+https://stackoverflow.com/questions/60920124/how-to-deep-link-to-specific-screen-in-react-native-expo
+
+https://www.youtube.com/watch?v=ZKxvBsGVKR8
+
+https://www.youtube.com/watch?v=Ey_90l9GaAw
+
+https://capacitorjs.com/docs/v2/guides/deep-links  // whole tutorial
+
+https://stackoverflow.com/questions/57051203/serve-files-from-well-known-folder-in-a-react-app
+
+basically you need to have a domain in order for standalone application to work
+
+Next, use Google’s Asset Links tool to create the Site Association file. 
+Fill in the website domain, app package name, and SHA256 fingerprint, 
+then click “Generate statement”:

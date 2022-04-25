@@ -1,0 +1,66 @@
+   const handleTouch = () => {
+        Keyboard.dismiss();
+    }
+
+    const handleFocus = () => {
+        setEmail({...email,focus:true,iconFocus:true})
+    }
+
+    const handlePressOut = () => {
+        if(email.text == ''){
+            setEmail({
+                ...email,
+                iconFocus:false
+            })
+        }
+    }
+
+    Keyboard.addListener('keyboardDidHide', () => {
+        setEmail({...email,focus:false})
+    })
+    
+
+               <View style={email.focus ? styles.flexFocused : styles.flex}>
+                <MaterialIcons name='mail-outline' color={email.iconFocus == true? '#ec4141': '#bababa'} size={20} style={styles.iconStyle}/>
+                <TextInput
+                style={styles.textInput}
+                placeholder='Email'
+                onChangeText = {(text) => setEmail({...email,text:text})}
+                placeholderTextColor={'#bababa'}
+                spellCheck={false}
+                autoCorrect={false}
+                />
+            </View>
+            <View style={password.focus ? styles.flexFocused : styles.flex}>
+                <MaterialIcons name='lock-outline' color={password.iconFocus == true? '#ec4141': '#bababa'} size={20} style={styles.iconStyle}/>
+                <TextInput
+                style={styles.textInput}
+                placeholder='Password'
+                onChangeText = {(text) => setEmail({...email,password:text})}
+                placeholderTextColor={'#bababa'}
+                spellCheck={false}
+                autoCorrect={false}
+                />
+            </View>
+                const [email,setEmail] = useState({
+        'text':'',
+        'focus':false,
+        'iconFocus':false
+    })
+    const [password,setPassword] = useState({
+        'password':'',
+        'focus':false,
+        'iconFocus':false
+    })
+
+    const handleFocus = () => {
+        setEmail({...email,focus:true,iconFocus:true})
+    }
+
+    const handleTouch = () => {
+        Keyboard.dismiss();
+    }
+    Keyboard.addListener('keyboardDidHide', () => {
+
+    })
+

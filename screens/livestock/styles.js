@@ -1,0 +1,76 @@
+import { StyleSheet } from "react-native";
+
+export default styles = StyleSheet.create({
+  mainView: {
+    flex: 1,
+    backgroundColor: "#E4E4E4",
+  },
+  container: {
+    height: 76,
+    backgroundColor: "#fff",
+    width: "90%",
+    alignSelf: "center",
+    display: "flex",
+    justifyContent: "center",
+    borderRadius: 12,
+    marginVertical: 10,
+  },
+  name: {
+    color: "#9A9A9A",
+    fontFamily: "Roboto",
+    fontSize: 20,
+    marginLeft: 30,
+  },
+  formBtn: {
+    width: 80,
+    height: 80,
+    borderRadius: 60,
+    backgroundColor: "#E64E99",
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    zIndex: 100,
+  },
+  BtnText: {
+    position: "absolute",
+  },
+  modalToggle: {
+    bottom: 10,
+    backgroundColor: "#C5CE2C",
+    padding: 10,
+    borderRadius: 80,
+    alignSelf: "center",
+  },
+  modalClose: {
+    marginTop: 20,
+    marginBottom: 0,
+  },
+  search: {
+    backgroundColor: "#fff",
+    height: 36,
+    width: "90%",
+    alignSelf: "center",
+    borderRadius: 19,
+    paddingHorizontal: 35,
+    marginBottom: 15,
+    marginTop: 25,
+    fontFamily: "Poppins",
+    color: "#9A9A9A",
+  },
+  searchIcon: {
+    height: 15,
+    width: 15,
+    position: "absolute",
+    left: 35,
+    top: 35,
+    zIndex: 100,
+    tintColor: "#9A9A9A",
+  },
+  modal: {
+    backgroundColor: "#E4E4E4",
+    flex: 1,
+  },
+});

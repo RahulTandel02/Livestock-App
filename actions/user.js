@@ -26,6 +26,18 @@ export const getUser = (token) => async (dispatch) => {
   }
 };
 
+export const getUserWithToken = (token) => async (dispatch) => {
+  try {
+    // const { data } = await api.getUser(token);
+    dispatch({
+      type: "LOGIN",
+      payload: token,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const postUser = (user) => async (dispatch) => {
   try {
     const { data } = await api.postUser(user);

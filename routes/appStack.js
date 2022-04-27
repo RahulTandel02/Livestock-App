@@ -15,6 +15,7 @@ import {
   useBottomTabBarHeight,
 } from "@react-navigation/bottom-tabs";
 import UserHeader from "../screens/userHeader";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Tab = createBottomTabNavigator();
 
@@ -25,7 +26,12 @@ export default function AppStack() {
 
   useEffect(() => {
     const fetchData = async () => {
-      dispatch(getUser(state.userToken));
+      try {
+        await AsyncStorage.setItem("storage", state.userToken);
+      } catch (error) {
+        console.log(error);
+      }
+      await dispatch(getUser(state.userToken));
     };
     fetchData();
   }, []);

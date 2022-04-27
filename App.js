@@ -13,6 +13,9 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import Loading from "./screens/loading";
 import { AntDesign } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch } from "react-redux";
+import { getUserWithToken } from "./actions/user";
 
 // heroku
 // figure out how to use this in expo apk
@@ -65,6 +68,15 @@ const DetailsHeader = ({ navigation, title }) => {
 };
 
 function App() {
+  const dispatch = useDispatch();
+
+  const getData = async () => {
+    const value = await AsyncStorage.getItem("storage");
+    if (value !== null) {
+      // console.log(value);
+      await dispatch(getUserWithToken(value));
+    }
+  };
   let [fontsLoaded] = useFonts({
     "Great-Wishes": require("./assets/fonts/Great-Wishes.otf"),
     Poppins: require("./assets/fonts/Poppins-Regular.ttf"),
@@ -102,7 +114,9 @@ function App() {
     setData(data);
   };
   useEffect(() => {
+    getData();
     Linking.addEventListener("url", handleDeepLink);
+
     return () => {
       Linking.removeEventListener("url");
     };

@@ -16,16 +16,17 @@ import { AntDesign } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch } from "react-redux";
 import { getUserWithToken } from "./actions/user";
+import DeepLinkStack from "./routes/deepLinkStack";
 
 // heroku
 // figure out how to use this in expo apk
 // https://expo.dev/artifacts/4650f031-56e9-494d-81fd-30a37aa4ce90
-
-const prefix = Linking.createURL("/");
-const Stack = createNativeStackNavigator();
+// https://expo.dev/accounts/rahultandel/projects/livestock_management/builds/7a6d4716-4c1c-460a-821f-fa5d3ffc8641
+// https://expo.dev/accounts/rahultandel/projects/livestock_management/builds/e1899adb-c703-40f5-99bf-829249b98239
 
 const DetailsHeader = ({ navigation, title }) => {
   const state = useSelector((state) => state.user);
+  // console.log("lodede");
   return (
     <>
       <View
@@ -58,8 +59,8 @@ const DetailsHeader = ({ navigation, title }) => {
           color="#E6F9E7"
           onPress={() => {
             state.userToken != null
-              ? navigation.replace("AppStack")
-              : navigation.replace("Auth");
+              ? navigation.reset({ index: 0, routes: [{ name: "AppStack" }] })
+              : navigation.reset({ index: 0, routes: [{ name: "Auth" }] });
           }}
         />
       </View>
@@ -67,13 +68,19 @@ const DetailsHeader = ({ navigation, title }) => {
   );
 };
 
+const prefix = Linking.createURL("/");
+const Stack = createNativeStackNavigator();
+
 function App() {
   const dispatch = useDispatch();
+  const [value, setValue] = useState(null);
 
   const getData = async () => {
+    // console.log(value);
     const value = await AsyncStorage.getItem("storage");
     if (value !== null) {
       // console.log(value);
+      setValue(value);
       await dispatch(getUserWithToken(value));
     }
   };
@@ -97,12 +104,19 @@ function App() {
                 },
               },
             },
+            // LivestockStack: {
+            //   screens: {
+            //     Details: {
+            //       path: state.userToken !== null ? "details/:id" : "",
+            //     },
+            //   },
+            // },
             Users: {
               path: "user",
             },
           },
         },
-        Details: {
+        Detail: {
           path: "details/:id",
         },
       },
@@ -120,7 +134,7 @@ function App() {
     return () => {
       Linking.removeEventListener("url");
     };
-  }, [data]);
+  }, []);
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -133,14 +147,24 @@ function App() {
   return (
     <NavigationContainer linking={linking} fallback={<Text>Loading</Text>}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {state.userToken !== null && (
+        {state.userToken !== null ? (
           <Stack.Screen name="AppStack" component={AppStack} />
-        )}
-        {state.userToken === null && (
+        ) : (
           <Stack.Screen name="Auth" component={LoginStack} />
         )}
+        {/* {state.userToken !== null && (
+         
+        )}
+        {state.userToken === null && (
+         
+        )} */}
         <Stack.Screen
-          name="Details"
+          name="Detail"
+          component={DeepLinkStack}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="LogoutDetails"
           component={DummyScreen}
           options={({ navigation }) => {
             return {
@@ -149,6 +173,7 @@ function App() {
               ),
               headerShown: true,
               headerStyle: { backgroundColor: "#C5CE2C" },
+              headerBackVisible: false,
             };
           }}
         />

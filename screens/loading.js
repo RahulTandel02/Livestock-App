@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ActivityIndicator } from "react-native";
 import globalSytles from "../styles/globalSytles";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -36,14 +36,18 @@ const Loading = ({ navigation, route, location }) => {
       dispatch(getBlogs());
     } else {
       setTimeout(() => {
-        navigation.replace("Details", { id: id });
+        navigation.replace("Details", {
+          id: id,
+          isLiveStockStack: route.params.isLiveStockStack,
+        });
       }, 1000);
     }
   }, []);
 
   return (
     <View style={globalSytles.container}>
-      <Text style={globalSytles.text}>Loading</Text>
+      {/* <Text style={globalSytles.text}>Loading</Text> */}
+      <ActivityIndicator size={"large"} color="#4e4e4e" />
     </View>
   );
 };

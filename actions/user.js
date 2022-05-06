@@ -34,7 +34,7 @@ export const getUserWithToken = (token) => async (dispatch) => {
       payload: token,
     });
   } catch (error) {
-    console.log(error);
+    console.log("Request failed from user token");
   }
 };
 

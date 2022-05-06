@@ -41,7 +41,11 @@ function LivestockStack() {
           options={({ route, navigation }) => ({
             title: route.params.name,
             headerTitle: (props) => (
-              <HeaderDetails navigation={navigation} id={route.params.id} />
+              <HeaderDetails
+                navigation={navigation}
+                id={route.params.id}
+                route={route}
+              />
             ),
           })}
         />

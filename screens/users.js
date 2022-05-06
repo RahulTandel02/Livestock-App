@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logOut } from "../actions/user";
 import AppContext from "../context/appContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Users = ({ route }) => {
   const { setUserData, userData } = useContext(AppContext);
@@ -27,6 +28,11 @@ const Users = ({ route }) => {
   useEffect(() => {
     setUserData(user);
   }, [user]);
+
+  const logoutUser = () => {
+    AsyncStorage.removeItem("storage");
+    dispatch(logOut());
+  };
 
   return (
     // <View style={globalSytles.container}>
@@ -92,7 +98,7 @@ const Users = ({ route }) => {
               {
                 text: "Yes",
                 onPress: () => {
-                  dispatch(logOut());
+                  logoutUser();
                 },
               },
               {

@@ -33,16 +33,17 @@ const Livestock = ({ navigation, route }) => {
     navigation.navigate("Loading", { id: id, isLiveStockStack: true });
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (user) {
-        await dispatch(getLivestock(user._id));
-      }
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (user) {
+  //       await dispatch(getLivestock(user._id));
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   const livestock = useSelector((state) => state.livestock);
+  // console.log(livestock);
   const [search, setSearch] = useState("");
   let filter = livestock;
 

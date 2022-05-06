@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "livestock_management",
+    "name": "Cattle Farm",
     "slug": "livestock_management",
     "scheme":"myliveapp",
     "version": "1.0.0",
@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#C5CE2C"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,7 +24,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#E4E4E4"
+        "backgroundColor": "#C5CE2C"
       },
       "intentFilters":[
         {

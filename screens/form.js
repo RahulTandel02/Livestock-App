@@ -27,7 +27,7 @@ const Form = ({ setOpenModal, liveData }) => {
   const dispatch = useDispatch();
   const id = useSelector((state) => state.userData._id);
   const [step, setStep] = useState(1);
-  console.log(liveData);
+  // console.log(liveData);
   const data = !liveData
     ? {
         user_id: id,

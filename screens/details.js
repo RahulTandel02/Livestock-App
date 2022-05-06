@@ -13,11 +13,10 @@ const Details = ({ route }) => {
   const livestockData = useSelector((state) =>
     state.livestock.filter((item) => item._id === id)
   );
-
-  if (livestockData === undefined) {
+  // console.log(id);
+  if (livestockData[0] === undefined) {
     return <Text>Does not exist</Text>;
   }
-  console.log(`Out side useEffect ${id}`);
 
   // console.log(
   //   Object.keys(livestockData[0]).filter((item) => {

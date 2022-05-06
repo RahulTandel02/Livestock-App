@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import globalSytles from "../styles/globalSytles";
 import { useWindowDimensions } from "react-native";
 import RenderHtml from "react-native-render-html";
@@ -43,7 +49,7 @@ const Blog = ({ route }) => {
         />
       ) : (
         <View style={globalSytles.container}>
-          <Text style={globalSytles.text}>Loading</Text>
+          <ActivityIndicator size={"large"} color="#4e4e4e" />
         </View>
       )}
     </ScrollView>

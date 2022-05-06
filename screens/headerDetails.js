@@ -8,9 +8,9 @@ import DetailsContext from "../context/detailsContext";
 
 // https://expo.dev/artifacts/c7342929-6923-4d83-9b6b-9d76c9c86216
 
-const HeaderDetails = ({ id, navigation }) => {
+const HeaderDetails = ({ id, navigation, route }) => {
   const [visible, setVisible] = useState(false);
-
+  const isLiveStockStack = route.params.isLiveStockStack;
   const hideMenu = () => setVisible(false);
   const { setModalState, modalState } = useContext(DetailsContext);
   const showMenu = () => setVisible(true);
@@ -34,7 +34,18 @@ const HeaderDetails = ({ id, navigation }) => {
   };
 
   return (
-    <View style={styles.header}>
+    <View style={isLiveStockStack ? styles.header : styles.headerLink}>
+      {!isLiveStockStack && (
+        <MaterialIcons
+          name="arrow-back"
+          size={24}
+          color="black"
+          style={styles.headerBack}
+          onPress={() => {
+            navigation.replace("Livestock");
+          }}
+        />
+      )}
       <Text style={styles.headerText}>Details</Text>
       <View style={styles.icon}>
         <Menu
@@ -68,8 +79,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
-
     transform: [{ translateX: -70 }],
+    left: 0,
+    // backgroundColor: "red",
   },
   headerText: {
     fontWeight: "bold",
@@ -88,5 +100,21 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     flexDirection: "row",
+  },
+  headerLink: {
+    width: "95%",
+    height: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
+    // transform: [{ translateX: -70 }],
+    left: 0,
+    // backgroundColor: "red",
+  },
+  headerBack: {
+    position: "absolute",
+    color: "#E6F9E7",
+    left: 0,
   },
 });

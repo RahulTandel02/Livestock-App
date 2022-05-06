@@ -16,13 +16,21 @@ import {
 } from "@react-navigation/bottom-tabs";
 import UserHeader from "../screens/userHeader";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getLivestock } from "../actions/livestock";
 
 const Tab = createBottomTabNavigator();
 
 export default function AppStack() {
   const [userData, setUserData] = useState({});
+  const [go, setGo] = useState(false);
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.userData);
+
+  if (setGo) {
+    const user = useSelector((state) => state.userData);
+    dispatch(getLivestock(user._id));
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +41,7 @@ export default function AppStack() {
       }
       await dispatch(getUser(state.userToken));
     };
-    fetchData();
+    fetchData().then(() => setGo(true));
   }, []);
 
   return (

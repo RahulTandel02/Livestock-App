@@ -14,6 +14,7 @@ const DummyScreen = ({ route, navigation }) => {
   const [data, setData] = useState({});
   const [userData, setUserData] = useState({});
   const user = useSelector((state) => state.user);
+  // console.log(user);
   useEffect(() => {
     const getData = async () => {
       const data = await axios.get(
@@ -29,7 +30,14 @@ const DummyScreen = ({ route, navigation }) => {
       // setData(data.data);
     };
 
+    // if (user.userToken !== null) {
+    //   navigation.navigate("AppStack", {
+    //     screen: "LivestockStack",
+    //     params: { screen: "Details", params: { id: id, name: "Details" } },
+    //   });
+    // } else {
     getData();
+    // }
 
     if (data !== null) {
       user_id = data["user_id"];
